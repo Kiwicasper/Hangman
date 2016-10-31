@@ -7,11 +7,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import logik.Galgelogik;
+
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button restart;
-
-    Intent game;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,13 +31,11 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
         restart = (Button) findViewById(R.id.btn_restart);
         restart.setOnClickListener(this);
 
-        game = new Intent(this, GameActivity.class);
-
     }
 
     @Override
     public void onClick(View v) {
-        this.startActivity(game);
+        this.finish();
 
     }
 }

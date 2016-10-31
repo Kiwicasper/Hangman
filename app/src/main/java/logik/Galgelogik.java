@@ -10,6 +10,9 @@ import java.util.HashSet;
 import java.util.Random;
 
 public class Galgelogik {
+
+  static Galgelogik instance;
+
   private ArrayList<String> muligeOrd = new ArrayList<String>();
   private String ordet;
   private ArrayList<String> brugteBogstaver = new ArrayList<String>();
@@ -52,8 +55,14 @@ public class Galgelogik {
     return spilletErTabt || spilletErVundet;
   }
 
+  public static Galgelogik getIntance(){
+    if (instance == null){
+      instance = new Galgelogik();
+    }
+    return instance;
+  }
 
-  public Galgelogik() {
+  private Galgelogik() {
     muligeOrd.add("bil");
     muligeOrd.add("computer");
     muligeOrd.add("programmering");

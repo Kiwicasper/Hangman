@@ -15,15 +15,15 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         app:srcCompat="@mipmap/won"
         android:id="@+id/img_result"
-        android:layout_weight="0.52" />
+        />
 
     <Button
         android:text="Play again"
-        android:layout_width="353dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btn_restart"
-        android:layout_weight="0.04" />
+         />
 </LinearLayout>

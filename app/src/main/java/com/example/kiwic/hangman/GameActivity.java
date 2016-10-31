@@ -28,7 +28,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        logik = new Galgelogik();
+        logik = Galgelogik.getIntance();
 
         word = (TextView) findViewById(R.id.word);
         btnGuess = (Button) findViewById(R.id.btn_guess);
@@ -41,6 +41,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
         result = new Intent(this, ResultActivity.class);
 
+    }
+
+    private void restart(){
+        logik.nulstil();
+        word.setText(logik.getSynligtOrd());
+        image.setImageResource(R.mipmap.empty_gallows);
     }
 
     @Override
@@ -56,11 +62,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             if (logik.erSidsteBogstavKorrekt()) {
                 if (logik.erSpilletVundet()) {
                     result.putExtra("result", true);
+                    restart();
                     this.startActivity(result);
                 }
             } else {
                 if(logik.erSpilletTabt()){
                     result.putExtra("result", false);
+                    restart();
                     this.startActivity(result);
                 }
                 else {

@@ -10,21 +10,22 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.kiwic.hangman.StartActivity"
-    android:weightSum="1"
-    android:orientation="vertical">
+
+    android:orientation="vertical"
+    android:weightSum="1">
 
     <ImageView
-        android:layout_width="348dp"
-        android:layout_height="230dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         app:srcCompat="@mipmap/start"
         android:id="@+id/imageView"
-        android:layout_weight="0.39" />
+        />
 
     <Button
         android:text="Start"
-        android:layout_width="339dp"
-        android:layout_height="27dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_start"
-        android:layout_weight="0.12" />
+        />
 
 </LinearLayout>
