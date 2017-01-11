@@ -40,25 +40,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         image = (ImageView) findViewById(R.id.img_gallows);
         letters = (TextView) findViewById(R.id.txt_guessedLetters);
 
-        word.setText("Loader ord...");
 
-        new AsyncTask() {
-            @Override
-            protected Object doInBackground(Object[] params) {
-                try {
-                    logik.hentOrd();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Object o) {
-                word.setText(logik.getSynligtOrd());
-
-            }
-        }.execute();
 
         btnGuess.setOnClickListener(this);
         result = new Intent(this, ResultActivity.class);

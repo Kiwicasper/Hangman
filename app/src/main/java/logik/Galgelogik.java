@@ -55,8 +55,8 @@ public class Galgelogik {
     return spilletErTabt || spilletErVundet;
   }
 
-  public static Galgelogik getIntance(){
-    if (instance == null){
+  public static Galgelogik getIntance() {
+    if (instance == null) {
       instance = new Galgelogik();
     }
     return instance;
@@ -157,5 +157,14 @@ public class Galgelogik {
 
     System.out.println("muligeOrd = " + muligeOrd);
     nulstil();
+  }
+
+  public String[] getList() {
+    String[] words = new String[20];
+    for (int i = 0; i < 20; i++) {
+
+      //words[i] = muligeOrd.get((int)Math.random() * 20);
+    }
+    return words;
   }
 }

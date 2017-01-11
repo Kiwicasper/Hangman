@@ -3,6 +3,7 @@ package com.example.kiwic.hangman;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -20,6 +21,9 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
 
         start = (Button) findViewById(R.id.btn_start);
         start.setOnClickListener(this);
+        for (int i = 0; i>20; i++){
+            Log.i("HHHEEEEEERRRRRREEEE: ", (int)Math.random() * 20 + " " + i);
+        }
 
 
     }
