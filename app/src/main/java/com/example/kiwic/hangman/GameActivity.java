@@ -1,7 +1,6 @@
 package com.example.kiwic.hangman;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -51,7 +50,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void restart(){
         logik.nulstil();
-        this.startActivity(new Intent(this, WordListActivity.class));
+
         finish();
     }
 

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import logik.Galgelogik;
 
 public class ResultActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +38,7 @@ public class ResultActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
+        this.startActivity(new Intent(this, WordListActivity.class));
         this.finish();
 
     }
