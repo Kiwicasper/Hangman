@@ -144,8 +144,10 @@ public class Galgelogik {
     return sb.toString();
   }
 
-  public void hentOrdFraDr() throws Exception {
-    String data = hentUrl("http://dr.dk");
+  public void hentOrd() throws Exception {
+    System.out.println("hent ord fra DR startet");
+
+    String data = hentUrl("http://www.andersenstories.com/da/andersen_fortaellinger/den_grimme_aelling");
     System.out.println("data = " + data);
 
     data = data.replaceAll("<.+?>", " ").toLowerCase().replaceAll("[^a-zæøå]", " ");

@@ -1,7 +1,7 @@
 package com.example.kiwic.hangman;
 
 import android.content.Intent;
-import android.os.Parcelable;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,22 +10,26 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import logik.Galgelogik;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
 
-    TextView word;
+    TextView word, letters;
     Button btnGuess;
     EditText txtGuess;
     ImageView image;
     Galgelogik logik;
     Intent result;
+    ArrayList<String> guessed = new ArrayList<>();
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game);
 
         logik = Galgelogik.getIntance();
@@ -34,17 +38,37 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         btnGuess = (Button) findViewById(R.id.btn_guess);
         txtGuess = (EditText) findViewById(R.id.txt_guess);
         image = (ImageView) findViewById(R.id.img_gallows);
+        letters = (TextView) findViewById(R.id.txt_guessedLetters);
 
-        word.setText(logik.getSynligtOrd());
+        word.setText("Loader ord...");
+
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    logik.hentOrd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                word.setText(logik.getSynligtOrd());
+
+            }
+        }.execute();
 
         btnGuess.setOnClickListener(this);
-
         result = new Intent(this, ResultActivity.class);
 
     }
 
     private void restart(){
         logik.nulstil();
+        guessed.clear();
+        letters.setText("");
         word.setText(logik.getSynligtOrd());
         image.setImageResource(R.mipmap.empty_gallows);
     }
@@ -56,18 +80,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             txtGuess.setHint("One letter at a time");
         }
         else {
+            guessed.add(txtGuess.getText().toString());
+            String s = "gættede bogstaver: ";
+            for (int i = 0; i < guessed.size(); i++){
+                s = s + guessed.get(i) + " ";
+            }
+            letters.setText(s);
             logik.gætBogstav(txtGuess.getText().toString());
             word.setText(logik.getSynligtOrd());
 
             if (logik.erSidsteBogstavKorrekt()) {
                 if (logik.erSpilletVundet()) {
                     result.putExtra("result", true);
+                    result.putExtra("ord", logik.getOrdet());
                     restart();
                     this.startActivity(result);
                 }
             } else {
                 if(logik.erSpilletTabt()){
                     result.putExtra("result", false);
+                    result.putExtra("ord", logik.getOrdet());
                     restart();
                     this.startActivity(result);
                 }
