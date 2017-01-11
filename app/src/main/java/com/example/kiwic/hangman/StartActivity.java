@@ -1,35 +1,66 @@
 package com.example.kiwic.hangman;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import logik.Galgelogik;
+
 public class StartActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button start;
-    Intent game;
+    Intent wordList;
+    Galgelogik logik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        game = new Intent(this, GameActivity.class);
+        logik = Galgelogik.getIntance();
+
+        wordList = new Intent(this, WordListActivity.class);
 
         start = (Button) findViewById(R.id.btn_start);
         start.setOnClickListener(this);
-        for (int i = 0; i>20; i++){
-            Log.i("HHHEEEEEERRRRRREEEE: ", (int)Math.random() * 20 + " " + i);
-        }
+
+
+
 
 
     }
 
     @Override
     public void onClick(View v) {
-        this.startActivity(game);
+        new AsyncTask() {
+            @Override
+            protected Object doInBackground(Object[] params) {
+                try {
+                    logik.hentOrd();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Object o) {
+                startNextActivity();
+
+
+            }
+        }.execute();
+
+
     }
+
+    private void startNextActivity() {
+
+        this.startActivity(wordList);
+    }
+
 }

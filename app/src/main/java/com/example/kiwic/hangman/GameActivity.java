@@ -40,6 +40,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         image = (ImageView) findViewById(R.id.img_gallows);
         letters = (TextView) findViewById(R.id.txt_guessedLetters);
 
+        word.setText(logik.getSynligtOrd());
+
 
 
         btnGuess.setOnClickListener(this);
@@ -49,10 +51,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void restart(){
         logik.nulstil();
-        guessed.clear();
-        letters.setText("");
-        word.setText(logik.getSynligtOrd());
-        image.setImageResource(R.mipmap.empty_gallows);
+        this.startActivity(new Intent(this, WordListActivity.class));
+        finish();
     }
 
     @Override

@@ -159,12 +159,16 @@ public class Galgelogik {
     nulstil();
   }
 
-  public String[] getList() {
-    String[] words = new String[20];
+  public ArrayList<String> getList() {
+    ArrayList<String> words = new ArrayList<>();
+    // Picks 20 random words from the wordList
     for (int i = 0; i < 20; i++) {
-
-      //words[i] = muligeOrd.get((int)Math.random() * 20);
+      words.add(muligeOrd.get((int)(Math.random() * muligeOrd.size() +1 )));
     }
     return words;
   }
+
+    public void pickWord(String word){
+        ordet = word;
+    }
 }
