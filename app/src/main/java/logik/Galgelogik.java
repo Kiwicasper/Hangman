@@ -170,5 +170,6 @@ public class Galgelogik {
 
     public void pickWord(String word){
         ordet = word;
+      opdaterSynligtOrd();
     }
 }

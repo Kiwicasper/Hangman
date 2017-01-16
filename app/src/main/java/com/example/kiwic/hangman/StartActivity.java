@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import logik.Galgelogik;
 
@@ -37,6 +38,7 @@ public class StartActivity extends AppCompatActivity implements View.OnClickList
             protected Object doInBackground(Object[] params) {
                 try {
                     logik.hentOrd();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
