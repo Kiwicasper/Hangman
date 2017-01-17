@@ -30,4 +30,19 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_restart"
          />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/previusLost"
+        android:padding="10dp"
+        android:paddingTop="30dp"/>
+    <TextView
+        android:text="TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/previusWon"
+        android:padding="10dp"
+        android:paddingTop="30dp"/>
 </LinearLayout>
